@@ -1,6 +1,5 @@
 var cartValue = document.getElementById("cart-value");
 var cartButton = document.getElementById("cart");
-
 var addButtons = document.getElementsByClassName("button");
 
 var items = [
@@ -123,7 +122,8 @@ function updatePrice() {
 
 cartButton.onclick = () => {
   updatePrice();
-
+  updateWhatsapp()
+  window.open(whatsapp," blank")
 
   for (let index = 0; index < items.length; index++) {
     if (items[index].quantity != 0) {
@@ -140,3 +140,18 @@ cartButton.onclick = () => {
     "The total amount is " + finalDollars + "$ and " + finalCents + " cents"
   );
 };
+
+
+
+var whatsapp = "https://api.whatsapp.com/send?phone=919000000000&text=Order%20details:"
+
+
+function updateWhatsapp(){
+  for(let index = 0; index<items.length;index++){
+    if(items[index].quantity !=0){
+      whatsapp+=items[index].name+"%20"+items[index].quantity
+    }
+  }
+  whatsapp+="%20The%20total%20amount%20is%20" + finalDollars + "$ and " + finalCents + " cents"
+
+}
